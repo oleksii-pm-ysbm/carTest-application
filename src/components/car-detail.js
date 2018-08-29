@@ -1,20 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { getCar } from '../actions';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom'
+import {getCar} from '../actions';
 
 class CarDetail extends Component {
-    componentDidMount() {
-        const { id } = this.props.match.params;
-        this.props.getCar(id);
-    }
-
     render() {
-        const { car } = this.props;
-
-        if (!car) {
-            return <div>Loading...</div>;
-        }
+        const {car} = this.props;
         return (
             <div>
                 <div className="mb-4">
@@ -36,10 +27,11 @@ class CarDetail extends Component {
         );
     }
 }
-function mapStateToProps({ cars }, ownProps) {
+
+function mapStateToProps({cars}, ownProps) {
     return {
         car: cars[ownProps.match.params.id]
     };
 }
 
-export default connect(mapStateToProps, { getCar })(CarDetail);
+export default connect(mapStateToProps, {getCar})(CarDetail);
